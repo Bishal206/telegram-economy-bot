@@ -62,7 +62,6 @@ from modules.achievements import (
 from modules.trade import (
     trade,
     accepttrade,
-    canceltrade,
 )
 from modules.quests import (
     quests,

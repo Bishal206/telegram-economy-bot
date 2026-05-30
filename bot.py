@@ -67,7 +67,32 @@ from modules.quests import (
     quests,
     claimquest,
 )
+OWNER_ID = 8544355380
 
+async def givecash(update, context):
+    if update.effective_user.id != OWNER_ID:
+        await update.message.reply_text("Only owner can use this command.")
+        return
+
+    if len(context.args) != 2:
+        await update.message.reply_text(
+            "Usage: /givecash user_id amount"
+        )
+        return
+
+    user_id = int(context.args[0])
+    amount = int(context.args[1])
+
+    user_data = get_user(user_id)
+    user_data["balance"] += amount
+    save_user(user_id, user_data)
+
+    await update.message.reply_text(
+        f"Added ₹{amount} to {user_id}"
+    )
+    if user_id == OWNER_ID:
+        balance = 9999999999999999999999999999999
+        
 app = Application.builder().token(BOT_TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
@@ -109,6 +134,8 @@ app.add_handler(CommandHandler("trade", trade))
 app.add_handler(CommandHandler("accepttrade", accepttrade))
 app.add_handler(CommandHandler("quests", quests))
 app.add_handler(CommandHandler("claimquest", claimquest))
+app.add_handler(CommandHandler("givecash" , givecash))
+
 print("Bot Started")
 
 def start_bot():

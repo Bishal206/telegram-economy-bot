@@ -67,6 +67,7 @@ from modules.quests import (
     quests,
     claimquest,
 )
+
 app = Application.builder().token(BOT_TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
@@ -111,3 +112,6 @@ app.add_handler(CommandHandler("claimquest", claimquest))
 print("Bot Started")
 
 app.run_polling()
+
+if __name__ == "__main__":
+    main()

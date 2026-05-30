@@ -111,7 +111,8 @@ app.add_handler(CommandHandler("quests", quests))
 app.add_handler(CommandHandler("claimquest", claimquest))
 print("Bot Started")
 
-app.run_polling()
-
+def start_bot():
+    app.run_polling()
+    
 if __name__ == "__main__":
     main()

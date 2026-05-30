@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from database import marriages, create_user
+from database import (marriages, create_user)
 
 
 async def marry(update: Update, context: ContextTypes.DEFAULT_TYPE):

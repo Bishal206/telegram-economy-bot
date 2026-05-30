@@ -57,7 +57,7 @@ def update_bank(user_id, amount):
 
 
     def add_item(user_id, item):
-    users.update_one(
+        users.update_one(
         {"_id": user_id},
         {"$push": {"inventory": item}}
     )
